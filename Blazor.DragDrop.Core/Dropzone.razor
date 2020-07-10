@@ -24,7 +24,7 @@
                              @ondragleave="(e)=>OnDragLeave(frag.Id,e)"
                              @ondragend="() =>OnDragEnd(frag.Id)"
                              @attributes="frag.OtherAttributes"
-                             class=@GetClasses(frag)>
+                             class="@GetClasses(frag) @ChildClass">
                             @if (DragDropService.EnableDebug)
                             {
                                 <p>@frag.Id</p>
@@ -38,7 +38,7 @@
                     }
                     else // not allowing dragging
                     {
-                        <div @attributes="frag.OtherAttributes" class=@GetClasses(frag)>
+                        <div @attributes="frag.OtherAttributes" class="@GetClasses(frag)  @ChildClass">
                             <CascadingValue Value="frag">
                                 @frag.RenderFragment(frag)
                             </CascadingValue>
@@ -94,6 +94,10 @@
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+
+    [Parameter]
+    public RenderFragment ChildClass { get; set; }
 
 
     public int Id { get => _dropzoneId; }
